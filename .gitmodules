@@ -1,0 +1,6 @@
+[submodule "bundle/c-support"]
+	path = bundle/c-support
+	url = git://github.com/WolfgangMehner/vim-plugins
+[submodule "bundle/vim-plugins"]
+	path = bundle/vim-plugins
+	url = git://github.com/WolfgangMehner/vim-plugins
