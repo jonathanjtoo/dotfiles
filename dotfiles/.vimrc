@@ -19,7 +19,6 @@ set shiftwidth=4
 set tabstop=4
 set ignorecase
 set smartcase
-set clipboard=unnamedplus
 set autoindent
 set smartindent
 set backspace=indent,eol,start
@@ -28,6 +27,12 @@ set ruler
 set showcmd
 set incsearch
 set wrap linebreak nolist
+
+if has('unnamedplus')
+    set clipboard=unnamedplus
+else
+    set clipboard=unnamed
+endif
 
 if &t_Co > 2 || has("gui_running")
   syntax on
