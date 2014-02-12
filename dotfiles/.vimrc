@@ -27,6 +27,9 @@ set ruler
 set showcmd
 set incsearch
 set wrap linebreak nolist
+let g:C_InsertFileHeader='no'
+set splitright
+set splitbelow
 
 if has('unnamedplus')
     set clipboard=unnamedplus
