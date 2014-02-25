@@ -1,0 +1,13 @@
+[user]
+	name = Jonathan Too
+	email = jonathanjtoo@gmail.com
+[core]
+	editor = vim
+[color]
+	ui = true
+[color "status"]
+	untracked = yellow
+	changed = cyan
+[color "diff"]
+	old = white red
+	new = white green
