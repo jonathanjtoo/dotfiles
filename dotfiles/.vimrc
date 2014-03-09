@@ -18,6 +18,7 @@ call vundle#rc()
 " let Vundle manage Vundle, required
 Bundle 'gmarik/vundle'
 Bundle 'WolfgangMehner/vim-plugins'
+Bundle 'mrtazz/simplenote.vim'
 
 set nu
 set expandtab
@@ -36,6 +37,7 @@ set wrap linebreak nolist
 let g:C_InsertFileHeader='no'
 set splitright
 set splitbelow
+source ~/.simplenoterc
 
 if has('unnamedplus')
     set clipboard=unnamedplus
