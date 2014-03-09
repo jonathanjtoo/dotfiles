@@ -10,8 +10,14 @@ else
   set backup		" keep a backup file
 endif
 
-call pathogen#incubate()
-call pathogen#helptags()
+" set the runtime path to include Vundle and initialize
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle, required
+Bundle 'gmarik/vundle'
+Bundle 'WolfgangMehner/vim-plugins'
 
 set nu
 set expandtab
