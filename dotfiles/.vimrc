@@ -2,7 +2,7 @@ if v:progname =~? "evim"
   finish
 endif
 
-set nocompatible
+set nocompatible    " be iMproved
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -11,14 +11,28 @@ else
 endif
 
 " set the runtime path to include Vundle and initialize
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+filetype off        " required for Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin() " required
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
-Bundle 'WolfgangMehner/vim-plugins'
-Bundle 'mrtazz/simplenote.vim'
+Plugin 'gmarik/vundle'
+Plugin 'WolfgangMehner/vim-plugins'
+" Plugin 'mrtazz/simplenote.vim'
+Plugin 'vim-latex/vim-latex'
+
+call vundle#end()   " required
+filetype plugin indent on  " required for Vundle
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
 
 set nu
 set expandtab

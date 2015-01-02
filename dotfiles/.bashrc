@@ -110,5 +110,9 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+#auto-complete ignore case
+bind 'set completion-ignore-case on'
+
 alias pacman='yaourt'
 alias less='/usr/share/vim/vim74/macros/less.sh'
+
