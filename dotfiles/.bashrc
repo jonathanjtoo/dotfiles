@@ -113,6 +113,22 @@ fi
 #auto-complete ignore case
 bind 'set completion-ignore-case on'
 
+#auto-complete ignore hyphen/underscore
+bind 'set completion-map-case on'
+
+#auto-complete show all if ambiguous
+bind 'set show-all-if-ambiguous on'
+
+#auto-complete show all if unmodified
+bind 'set show-all-if-unmodified on'
+
+#show auto-complete prefix + list
+bind 'set completion-prefix-display-length 2'
+
+#auto-complete with LS_COLORS 
+#for bash 4.3 and later
+bind 'set colored-stats on'
+
 alias pacman='yaourt'
 alias less='/usr/share/vim/vim74/macros/less.sh'
 
