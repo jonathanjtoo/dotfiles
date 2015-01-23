@@ -18,8 +18,9 @@ call vundle#begin() " required
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'WolfgangMehner/vim-plugins'
-" Plugin 'mrtazz/simplenote.vim'
 Plugin 'vim-latex/vim-latex'
+" Plugin 'mrtazz/simplenote.vim'
+" source ~/.simplenoterc
 
 call vundle#end()   " required
 filetype plugin indent on  " required for Vundle
@@ -51,7 +52,6 @@ set wrap linebreak nolist
 let g:C_InsertFileHeader='no'
 set splitright
 set splitbelow
-source ~/.simplenoterc
 
 if has('unnamedplus')
     set clipboard=unnamedplus
