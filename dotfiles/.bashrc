@@ -129,6 +129,10 @@ bind 'set completion-prefix-display-length 2'
 #for bash 4.3 and later
 bind 'set colored-stats on'
 
-alias pacman='yaourt'
-alias less='/usr/share/vim/vim74/macros/less.sh'
+#Use VIM's less.sh for syntax highlighting
+VLESS=$(find /usr/share/vim -name 'less.sh')
+if [ ! -z $VLESS ]; then
+    alias less=$VLESS
+fi
 
+alias pacman='yaourt'
