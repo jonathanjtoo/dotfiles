@@ -18,7 +18,8 @@ call vundle#begin() " required
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'WolfgangMehner/vim-plugins'
-Plugin 'vim-latex/vim-latex'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+" Plugin 'vim-latex/vim-latex'
 " Plugin 'mrtazz/simplenote.vim'
 " source ~/.simplenoterc
 
@@ -69,6 +70,13 @@ filetype plugin indent on
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
+endif
+
+
+"ignore LaTeX-Box's indent
+let s:extfname = expand("%:e")
+if s:extfname ==? "tex" || s:extfname ==? "cls"
+  let g:LatexBox_custom_indent='0'
 endif
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
