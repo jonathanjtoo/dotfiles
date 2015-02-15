@@ -17,8 +17,9 @@ call vundle#begin() " required
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'WolfgangMehner/vim-plugins'
+Plugin 'tpope/vim-surround'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
+" Plugin 'WolfgangMehner/vim-plugins'
 " Plugin 'vim-latex/vim-latex'
 " Plugin 'mrtazz/simplenote.vim'
 " source ~/.simplenoterc
@@ -50,7 +51,8 @@ set ruler
 set showcmd
 set incsearch
 set wrap linebreak nolist
-let g:C_InsertFileHeader='no'
+" let g:C_InsertFileHeader='no'
+" let g:BASH_InsertFileHeader='no'
 set splitright
 set splitbelow
 
