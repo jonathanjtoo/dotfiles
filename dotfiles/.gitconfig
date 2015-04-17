@@ -11,5 +11,5 @@
 [color "diff"]
 	old = white red
 	new = white green
-[push]
-	default = simple
+#[push]
+#	default = simple

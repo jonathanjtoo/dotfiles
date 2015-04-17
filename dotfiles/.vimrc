@@ -17,7 +17,9 @@ call vundle#begin() " required
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " Plugin 'WolfgangMehner/vim-plugins'
 " Plugin 'vim-latex/vim-latex'
@@ -56,19 +58,27 @@ set wrap linebreak nolist
 set splitright
 set splitbelow
 
+"clipboard upgrade
 if has('unnamedplus')
     set clipboard=unnamedplus
 else
     set clipboard=unnamed
 endif
 
+"highlight search results
 if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
 
+"color solarized
+syntax enable
+set background=dark
+colorscheme solarized
+
 filetype plugin indent on
 
+"Diff modified vs original shortcut
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
