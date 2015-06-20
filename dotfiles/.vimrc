@@ -58,6 +58,9 @@ set wrap linebreak nolist
 set splitright
 set splitbelow
 
+" ignore case for files 7.3+
+set wildignorecase
+
 "clipboard upgrade
 if has('unnamedplus')
     set clipboard=unnamedplus

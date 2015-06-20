@@ -135,4 +135,6 @@ if [ ! -z $VLESS ]; then
     alias less=$VLESS
 fi
 
+#ARCH LINUX only
 alias pacman='yaourt'
+alias pacup="echo 'pacman -Syu --aur --devel' && pacman -Syu --aur --devel"
