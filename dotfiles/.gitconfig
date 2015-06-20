@@ -11,5 +11,6 @@
 [color "diff"]
 	old = white red
 	new = white green
-#[push]
+[push]
 #	default = simple
+    default = current
