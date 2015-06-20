@@ -59,7 +59,9 @@ set splitright
 set splitbelow
 
 " ignore case for files 7.3+
-set wildignorecase
+if v:version >= 703
+    set wildignorecase
+endif
 
 "clipboard upgrade
 if has('unnamedplus')
