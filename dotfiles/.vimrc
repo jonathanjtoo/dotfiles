@@ -80,6 +80,7 @@ endif
 syntax enable
 set background=dark
 colorscheme solarized
+let g:solarized_termcolors=256
 
 filetype plugin indent on
 
