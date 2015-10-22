@@ -13,12 +13,14 @@ git clone to ~/.vim/
 
     mv ~/.vimrc ~/.vimrc_backup
     mv ~/.bashrc ~/.bashrc_backup
+    mv ~/.bash_profile ~/.bash_profile_backup
     mv ~/.gitconfig ~/.gitconfig_backup
 
 soft link all config files
 
     ln -s ~/.vim/dotfiles/.vimrc ~/.vimrc
     ln -s ~/.vim/dotfiles/.bashrc ~/.bashrc
+    ln -s ~/.vim/dotfiles/.bash_profile ~/.bash_profile
     ln -s ~/.vim/dotfiles/.gitconfig ~/.gitconfig
 
 install Vundle submodule:
