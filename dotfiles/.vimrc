@@ -40,7 +40,7 @@ filetype plugin indent on  " required for Vundle
 " see :h vundle for more details or wiki for FAQ
 
 set nu
-set expandtab
+" set expandtab
 set shiftwidth=4
 set tabstop=4
 set ignorecase
@@ -59,7 +59,7 @@ set splitright
 set splitbelow
 
 " ignore case for files 7.3+
-if v:version >= 703
+if v:version > 703
     set wildignorecase
 endif
 
