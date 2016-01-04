@@ -43,7 +43,7 @@ filetype plugin indent on  " required for Vundle
 " see :h vundle for more details or wiki for FAQ
 
 set nu
-" set expandtab
+set expandtab
 set shiftwidth=4
 set tabstop=4
 set ignorecase
@@ -102,3 +102,11 @@ endif
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+" Associate .py files as python files
+au BufRead,BufNewFile *.py set filetype=python
+
+
+" Highlight line if more than 80 characters. (Optional)
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
