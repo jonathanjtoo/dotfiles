@@ -62,7 +62,7 @@ set splitright
 set splitbelow
 
 "ignore case for files and commands
-if has('wildignore')
+if exists("&wildignorecase")
     set wildignorecase
 endif
 if has('wildmenu')
