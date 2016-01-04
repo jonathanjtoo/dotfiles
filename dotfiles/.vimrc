@@ -61,9 +61,13 @@ set wrap linebreak nolist
 set splitright
 set splitbelow
 
-" ignore case for files 7.3+
-if v:version > 703
+"ignore case for files and commands
+if has('wildignore')
     set wildignorecase
+endif
+if has('wildmenu')
+    set wildmenu
+    set wildmode=list:longest,full
 endif
 
 "clipboard upgrade
@@ -82,8 +86,8 @@ endif
 "color solarized
 syntax enable
 set background=dark
+"let g:solarized_termcolors=256
 colorscheme solarized
-let g:solarized_termcolors=256
 
 filetype plugin indent on
 

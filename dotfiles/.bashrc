@@ -54,11 +54,10 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    GREEN="\[\e[1;32m\]"
-    CYAN="\[\e[1;36m\]"
-    PLAIN="\[\e[m\]"
-    PS1="${CYAN}[\u@\h:${GREEN}\w${CYAN}]\$ ${PLAIN}"
+    GREEN=$(tput setaf 2)
+    CYAN=$(tput setaf 6)
+    PLAIN=$(tput sgr0)
+    PS1='\[$CYAN\][\u@\h:\[$GREEN\]\w\[$CYAN\]]$ \[$PLAIN\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -87,11 +86,6 @@ elif [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -137,7 +131,3 @@ VLESS=$(find /usr/share/vim -name 'less.sh')
 if [ ! -z $VLESS ]; then
     alias less=$VLESS
 fi
-
-#ARCH LINUX only
-alias pacman='yaourt'
-alias pacup="echo 'pacman -Syu --aur --devel' && pacman -Syu --aur --devel"
