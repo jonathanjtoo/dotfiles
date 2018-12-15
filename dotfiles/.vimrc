@@ -2,8 +2,6 @@ if v:progname =~? "evim"
   finish
 endif
 
-set nocompatible    " be iMproved
-
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
@@ -16,7 +14,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() " required
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
@@ -24,6 +22,20 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vim-scripts/a.vim'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'chazy/cscope_maps'
+
+""""""""" Python plugins """""""""""
+"" AutoComplete for many languages
+"Plugin 'Valloric/YouCompleteMe'
+"" close autocomplete window when done
+"let g:ycm_autoclose_preview_window_after_completion=1
+"" shortcut to goto definition
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Python's indent folding
+Plugin 'tmhedberg/SimpylFold'
+" Include __doc__ in folded preview
+let g:SimpylFold_docstring_preview=1
+
 " Plugin 'WolfgangMehner/vim-plugins'
 " Plugin 'vim-latex/vim-latex'
 " Plugin 'mrtazz/simplenote.vim'
@@ -112,5 +124,20 @@ au BufRead,BufNewFile *.py set filetype=python
 
 
 " Highlight line if more than 80 characters. (Optional)
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+
+" If doing a diff. Upon writing changes to file, automatically update the
+" differences
+autocmd BufWritePost * if &diff == 1 | diffupdate | endif
+
+" Highlight bad extra white spaces
+" define BadWhitespace before using in a match
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+set encoding=utf-8
+
+" Disable middle/third click
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+
