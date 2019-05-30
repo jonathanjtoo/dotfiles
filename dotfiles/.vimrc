@@ -112,5 +112,5 @@ au BufRead,BufNewFile *.py set filetype=python
 
 
 " Highlight line if more than 80 characters. (Optional)
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
