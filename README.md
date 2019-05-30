@@ -36,5 +36,3 @@ open vim and run Vundle:
 
     :PluginInstall
 
-additional setups:
-    git config --global core.excludesfile ~/.gitignore_global

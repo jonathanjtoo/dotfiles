@@ -3,6 +3,7 @@
 	email = jonathanjtoo@gmail.com
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore_global
 [color]
 	branch = auto
 	diff = auto
