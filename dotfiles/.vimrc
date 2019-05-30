@@ -23,6 +23,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'vim-scripts/a.vim'
 Plugin 'jlanzarotta/bufexplorer'
+let g:bufExplorerVersionWarn=0
 Plugin 'chazy/cscope_maps'
 
 """"""""" Python plugins """""""""""

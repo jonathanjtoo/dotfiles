@@ -1,0 +1,6 @@
+# Swap
+[._]*.sw[a-p]
+
+# Temporary
+.netrwhist
+*~

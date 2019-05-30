@@ -16,6 +16,7 @@ git clone to ~/.vim/
     mv ~/.bash_profile ~/.bash_profile_backup
     mv ~/.bash_aliases ~/.bash_aliases_backup
     mv ~/.gitconfig ~/.gitconfig_backup
+    mv ~/.gitignore_global ~/.gitignore_global_backup
 
 soft link all config files
 
@@ -24,6 +25,7 @@ soft link all config files
     ln -s ~/.vim/dotfiles/.bash_profile ~/.bash_profile
     ln -s ~/.vim/dotfiles/.bash_aliases ~/.bash_aliases
     ln -s ~/.vim/dotfiles/.gitconfig ~/.gitconfig
+    ln -s ~/.vim/dotfiles/.gitignore_global ~/.gitignore_global
 
 install Vundle submodule:
 
@@ -32,6 +34,7 @@ install Vundle submodule:
 
 open vim and run Vundle:
 
-    :VundleInstall
+    :PluginInstall
 
-
+additional setups:
+    git config --global core.excludesfile ~/.gitignore_global
