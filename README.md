@@ -27,12 +27,8 @@ soft link all config files
     ln -s ~/.vim/dotfiles/.gitconfig ~/.gitconfig
     ln -s ~/.vim/dotfiles/.gitignore_global ~/.gitignore_global
 
-install Vundle submodule:
+When Vim is opened, vim-plug should auto-install and download needed plugins.
+To update plugins and upgrade vim-plug, use the custom command:
 
-    cd ~/.vim/
-    git submodule init && git submodule update
-
-open vim and run Vundle:
-
-    :PluginInstall
+    :PU
 
