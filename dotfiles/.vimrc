@@ -10,52 +10,45 @@ else
   set backup		" keep a backup file
 endif
 
-" set the runtime path to include Vundle and initialize
-filetype off        " required for Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin() " required
+" Auto-install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'vim-scripts/a.vim'
-Plugin 'jlanzarotta/bufexplorer'
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'tpope/vim-surround'
+Plug 'altercation/vim-colors-solarized'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'vim-scripts/a.vim'
+Plug 'jlanzarotta/bufexplorer'
 let g:bufExplorerVersionWarn=0
-Plugin 'chazy/cscope_maps'
+Plug 'chazy/cscope_maps'
 
 """"""""" Python plugins """""""""""
 "" AutoComplete for many languages
-"Plugin 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 "" close autocomplete window when done
 "let g:ycm_autoclose_preview_window_after_completion=1
 "" shortcut to goto definition
 "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Python's indent folding
-Plugin 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 " Include __doc__ in folded preview
 let g:SimpylFold_docstring_preview=1
 
-" Plugin 'WolfgangMehner/vim-plugins'
-" Plugin 'vim-latex/vim-latex'
-" Plugin 'mrtazz/simplenote.vim'
+" Plug 'WolfgangMehner/vim-plugins'
+" Plug 'vim-latex/vim-latex'
+" Plug 'mrtazz/simplenote.vim'
 " source ~/.simplenoterc
 
-call vundle#end()   " required
-filetype plugin indent on  " required for Vundle
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
+call plug#end()
+
+" Update all plugins and then upgrade vim-plug
+command! PU PlugUpdate | PlugUpgrade
 
 set nu
 set expandtab
