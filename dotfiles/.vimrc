@@ -23,6 +23,7 @@ Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/autoload_cscope.vim'
 Plug 'jlanzarotta/bufexplorer'
 let g:bufExplorerVersionWarn=0
 Plug 'chazy/cscope_maps'
