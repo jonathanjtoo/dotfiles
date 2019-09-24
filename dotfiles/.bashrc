@@ -122,6 +122,9 @@ bind 'set show-all-if-unmodified on'
 #show auto-complete prefix + list
 bind 'set completion-prefix-display-length 2'
 
+#enable forward search with Ctrl-S in Bash (default emacs mapping)
+stty -ixon
+
 #auto-complete with LS_COLORS 
 #for bash 4.3 and later
 bind 'set colored-stats on'
