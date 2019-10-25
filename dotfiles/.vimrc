@@ -134,6 +134,14 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 set encoding=utf-8
 
+" Use :TrimWhiteSpace to remove all BadWhiteSpace
+fun! TrimWhiteSpace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+command TrimWhiteSpace call TrimWhiteSpace()
+
 " Disable middle/third click
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
