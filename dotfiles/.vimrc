@@ -137,7 +137,11 @@ set encoding=utf-8
 " Use :TrimWhiteSpace to remove all BadWhiteSpace
 fun! TrimWhiteSpace()
     let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
+    if version >= 800
+        keeppatterns %s/\s\+$//e
+    else
+        %s/\s\+$//e
+    endif
     call winrestview(l:save)
 endfun
 command TrimWhiteSpace call TrimWhiteSpace()
