@@ -27,4 +27,6 @@
 	logone = log --oneline
 	st = status
 	stu = status -uno
+	bvv = branch -vv
+	wl = worktree list
 	alias = config --get-regexp ^alias\\.
