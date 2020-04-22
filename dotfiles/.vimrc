@@ -20,10 +20,11 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
-Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'vim-scripts/a.vim'
-Plug 'vim-scripts/autoload_cscope.vim'
+"Plug 'vim-scripts/autoload_cscope.vim'
+Plug 'erig0/cscope_dynamic'
 Plug 'jlanzarotta/bufexplorer'
 let g:bufExplorerVersionWarn=0
 Plug 'chazy/cscope_maps'
@@ -92,11 +93,7 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-"color solarized
-syntax enable
-set background=dark
-"let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme gruvbox
 
 filetype plugin indent on
 
