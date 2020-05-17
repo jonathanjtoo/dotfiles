@@ -93,6 +93,7 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+set background=dark
 colorscheme gruvbox
 
 filetype plugin indent on
