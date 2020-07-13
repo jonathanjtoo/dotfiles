@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'vim-scripts/a.vim'
 "Plug 'vim-scripts/autoload_cscope.vim'
@@ -52,7 +53,7 @@ call plug#end()
 " Update all plugins and then upgrade vim-plug
 command! PU PlugUpdate | PlugUpgrade
 
-set nu
+set number relativenumber
 set expandtab
 set shiftwidth=4
 set tabstop=4
