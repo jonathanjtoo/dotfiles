@@ -1,5 +1,0 @@
-# ignore vim-plug install (will be auto-installed in new clone)
-autoload/plug.vim*
-
-# ignore vim-plug downloaded bundles
-plugged/
