@@ -72,6 +72,7 @@ set wrap linebreak nolist
 set splitright
 set splitbelow
 set mouse=a
+set lazyredraw
 
 "ignore case for files and commands
 if exists("&wildignorecase")
@@ -113,8 +114,10 @@ if s:extfname ==? "tex" || s:extfname ==? "cls"
   let g:LatexBox_custom_indent='0'
 endif
 
-" <Ctrl-l> redraws the screen and removes any search highlighting.
-nnoremap <silent> <C-l> :nohl<CR><C-l>
+" <CR> redraws the screen and removes any search highlighting.
+if maparg('<CR>', 'n') ==# ''
+  nnoremap <silent> <CR> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><CR>
+endif
 
 " Associate .py files as python files
 au BufRead,BufNewFile *.py set filetype=python
