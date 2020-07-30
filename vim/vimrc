@@ -71,6 +71,7 @@ set wrap linebreak nolist
 " let g:BASH_InsertFileHeader='no'
 set splitright
 set splitbelow
+set mouse=a
 
 "ignore case for files and commands
 if exists("&wildignorecase")
