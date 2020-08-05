@@ -43,6 +43,7 @@ execute "set <M-h>=h"
 execute "set <M-j>=j"
 execute "set <M-k>=k"
 execute "set <M-l>=l"
+set ttimeout ttimeoutlen=50
 Plug 'RyanMillerC/better-vim-tmux-resizer'
 
 
