@@ -166,6 +166,14 @@ fun! TrimWhiteSpace()
 endfun
 command TrimWhiteSpace call TrimWhiteSpace()
 
+" Use :ToggleCursorLineCol to toggle highlights to check indents
+function! ToggleCursorLineCol()
+  set cursorcolumn!
+  set cursorline!
+endfunction
+command ToggleCursorLineCol call ToggleCursorLineCol()
+nnoremap <F5> :ToggleCursorLineCol<CR>
+
 " Disable middle/third click
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
