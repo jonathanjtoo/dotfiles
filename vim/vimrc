@@ -46,6 +46,22 @@ execute "set <M-l>=l"
 set ttimeout ttimeoutlen=50
 Plug 'RyanMillerC/better-vim-tmux-resizer'
 
+""""""""" Vim session plugin """"""""
+"Plug 'xolox/vim-misc'
+"Plug 'xolox/vim-session'
+"
+" Start new saved session with 2 ways:
+"   1) by first cd to directory in terminal and open vim without arguments/files
+"   2) inside vim, :Prosession <directory to save session>
+" Context-switch between saved sessions with 2 ways:
+"   1) cd to directory with existing saved session, open vim
+"       1a) open vim in ~ will open last saved session
+"   2) :Prosession <tab-completion to directory>
+" Delete old sessions:
+"   :ProcessionDelete <tab-completion to directory>
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+let g:prosession_last_session_dir = '~'
 
 """"""""" Python plugins """""""""""
 "" AutoComplete for many languages
