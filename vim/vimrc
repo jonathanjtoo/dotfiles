@@ -29,6 +29,7 @@ Plug 'erig0/cscope_dynamic'
 Plug 'jlanzarotta/bufexplorer'
 let g:bufExplorerVersionWarn=0
 Plug 'chazy/cscope_maps'
+Plug 'dense-analysis/ale'
 
 """"""""" tmux related plugins """""""
 Plug 'christoomey/vim-tmux-navigator'
@@ -70,6 +71,15 @@ let g:prosession_last_session_dir = '~'
 "let g:ycm_autoclose_preview_window_after_completion=1
 "" shortcut to goto definition
 "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\}
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black', 'autopep8', 'isort'],
+\}
 
 " Python's indent folding
 Plug 'tmhedberg/SimpylFold'
