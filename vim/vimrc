@@ -30,6 +30,7 @@ Plug 'jlanzarotta/bufexplorer'
 let g:bufExplorerVersionWarn=0
 Plug 'chazy/cscope_maps'
 Plug 'dense-analysis/ale'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 """"""""" tmux related plugins """""""
 Plug 'christoomey/vim-tmux-navigator'
