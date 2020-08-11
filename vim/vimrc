@@ -22,7 +22,6 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'vim-scripts/a.vim'
 "Plug 'vim-scripts/autoload_cscope.vim'
 Plug 'erig0/cscope_dynamic'
@@ -86,11 +85,20 @@ let g:ale_fixers = {
 Plug 'tmhedberg/SimpylFold'
 " Include __doc__ in folded preview
 let g:SimpylFold_docstring_preview=1
+" Python syntax
+Plug 'hdima/python-syntax'
 
-" Plug 'WolfgangMehner/vim-plugins'
+
+"""" PHP """"
+" Plug 'StanAngeloff/php.vim'
+
+"""" LaTeX """"
+" Plug 'lervag/vimtex'
+" Plug 'LaTeX-Box-Team/LaTeX-Box'
 " Plug 'vim-latex/vim-latex'
-" Plug 'mrtazz/simplenote.vim'
-" source ~/.simplenoterc
+
+"""" other language support """"
+" Plug 'WolfgangMehner/vim-plugins'
 
 call plug#end()
 

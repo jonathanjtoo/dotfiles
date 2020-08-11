@@ -13,7 +13,6 @@ import shutil
 from pathlib import Path, PurePath
 
 DOTFILES = [
-    "vim",
     "vim/vimrc",
     "bash/bashrc",
     "bash/bash_profile",
