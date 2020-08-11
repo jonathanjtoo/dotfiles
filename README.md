@@ -6,32 +6,8 @@ This repository includes all my dotfiles setup.
 
 ```sh
 git clone https://github.com/jonathanjtoo/dotfiles.git ~/.dotfiles
-```
-
-[optional backup all config files]
-
-```sh
-mv ~/.vimrc ~/.vimrc_backup
-mv ~/.vim ~/.vim_backup
-mv ~/.bashrc ~/.bashrc_backup
-mv ~/.bash_profile ~/.bash_profile_backup
-mv ~/.bash_aliases ~/.bash_aliases_backup
-mv ~/.gitconfig ~/.gitconfig_backup
-mv ~/.gitignore_global ~/.gitignore_global_backup
-mv ~/.tmux.conf ~/.tmux.conf_backup
-```
-
-soft link all config files
-
-```sh
-ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-ln -s ~/.dotfiles/vim/ ~/.vim
-ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
-ln -s ~/.dotfiles/bash/bash_profile ~/.bash_profile
-ln -s ~/.dotfiles/bash/bash_aliases ~/.bash_aliases
-ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+cd ~/.dotfiles
+./install_dotfiles.py
 ```
 
 When Vim is opened, vim-plug should auto-install and download needed plugins.
@@ -39,6 +15,14 @@ To update plugins and upgrade vim-plug, use the custom command:
 
 ```sh
 :PU
+```
+
+Backup of existing dotfiles will be saved in `~/.dotfiles_backup/`
+To restore from the backup, use the `-r` option
+
+```sh
+cd ~/.dotfiles
+./install_dotfiles.py -r
 ```
 
 ## Thanks

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Backup existing dotfiles and link new ones from repo
+Backup existing dotfiles to ~/.dotfiles_backup/ and link new ones from repo
 
 run in the .dotfiles directory with:
     ./install_dotfiles.py
