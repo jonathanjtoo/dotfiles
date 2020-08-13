@@ -9,8 +9,8 @@ to restore the earlier backup dotfiles
 """
 
 import argparse
+import os
 import shutil
-from pathlib import Path, PurePath
 
 DOTFILES = [
     "vim/vimrc",
@@ -22,15 +22,15 @@ DOTFILES = [
     "tmux/tmux.conf",
 ]
 
-HOME_DIR = Path.home()
-BACKUP_DIR = HOME_DIR / ".dotfiles_backup"
+HOME_DIR = os.path.expanduser("~")
+BACKUP_DIR = os.path.join(HOME_DIR, ".dotfiles_backup")
 
 
 def check_dotfiles_list():
     """ Make sure defined dotfiles list is good """
 
     for file in DOTFILES:
-        assert Path(file).exists(), (
+        assert os.path.exists(file), (
             "Entry {}:{} in "
             "DOTFILES list does not exist".format(DOTFILES.index(file), file)
         )
@@ -39,35 +39,36 @@ def check_dotfiles_list():
 def backup_old():
     """ move existing dotfiles to .dotfiles_backup dir """
 
-    assert not BACKUP_DIR.exists(), (
+    assert not os.path.exists(BACKUP_DIR), (
         "~/.dotfiles_backup already exists! "
         "Please move or delete it before running script. Exiting."
     )
-    BACKUP_DIR.mkdir()
+    os.mkdir(BACKUP_DIR)
     for file in DOTFILES:
         # print("{}:{} exists!".format(DOTFILES.index(file), file))
-        basename = "." + PurePath(file).name
+        basename = "." + os.path.basename(file)
         # print(basename)
-        oldpath = HOME_DIR / basename
+        oldpath = os.path.join(HOME_DIR, basename)
         # print("oldpath: ", oldpath)
-        newpath = BACKUP_DIR / basename
+        newpath = os.path.join(BACKUP_DIR, basename)
         # print("newpath: ", newpath)
-        if oldpath.exists() or oldpath.is_symlink():
+        if os.path.exists(oldpath) or os.path.islink(oldpath):
             shutil.copy(oldpath, newpath, follow_symlinks=False)
-            oldpath.unlink()
+            os.remove(oldpath)
 
 
 def restore_backup():
     """ restore backup dotfiles into HOME, does not destroy backup """
 
-    assert BACKUP_DIR.exists(), "~/.dotfiles_backup does NOT exists! Exiting"
+    assert os.path.exists(
+        BACKUP_DIR), "~/.dotfiles_backup does NOT exists! Exiting"
     for file in DOTFILES:
-        basename = "." + PurePath(file).name
+        basename = "." + os.path.basename(file)
 
-        src_path = BACKUP_DIR / basename
-        dst_path = HOME_DIR / basename
+        src_path = os.path.join(BACKUP_DIR, basename)
+        dst_path = os.path.join(HOME_DIR, basename)
 
-        if src_path.exists() or src_path.is_symlink():
+        if os.path.exists(src_path) or os.path.islink(src_path):
             try:
                 shutil.copy(src_path, dst_path, follow_symlinks=False)
             except shutil.SameFileError:
@@ -81,17 +82,17 @@ def symlink_new():
 
     for file in DOTFILES:
         # print("{}:{} exists!".format(DOTFILES.index(file), file))
-        basename = "." + PurePath(file).name
+        basename = "." + os.path.basename(file)
         # print(basename)
-        newpath = HOME_DIR / basename
+        newpath = os.path.join(HOME_DIR, basename)
         # print(newpath)
-        link_target = HOME_DIR / ".dotfiles" / file
+        link_target = os.path.join(HOME_DIR, ".dotfiles", file)
         # print(link_target)
-        assert not newpath.exists() and not newpath.is_symlink(), (
+        assert not os.path.exists(newpath) and not os.path.islink(newpath), (
             "Old file ({}) was not cleaned up "
             "correctly after backup and still exists!".format(newpath)
         )
-        newpath.symlink_to(link_target, link_target.is_dir())
+        os.symlink(link_target, newpath, os.path.isdir(link_target))
 
 
 if __name__ == "__main__":
