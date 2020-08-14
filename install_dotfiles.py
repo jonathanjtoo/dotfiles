@@ -11,6 +11,7 @@ to restore the earlier backup dotfiles
 import argparse
 import os
 import shutil
+import filecmp
 
 DOTFILES = [
     "vim/vimrc",
@@ -48,13 +49,13 @@ def backup_old():
         # print("{}:{} exists!".format(DOTFILES.index(file), file))
         basename = "." + os.path.basename(file)
         # print(basename)
-        oldpath = os.path.join(HOME_DIR, basename)
-        # print("oldpath: ", oldpath)
-        newpath = os.path.join(BACKUP_DIR, basename)
-        # print("newpath: ", newpath)
-        if os.path.exists(oldpath) or os.path.islink(oldpath):
-            shutil.copy(oldpath, newpath, follow_symlinks=False)
-            os.remove(oldpath)
+        src_path = os.path.join(HOME_DIR, basename)
+        # print("src_path: ", src_path)
+        dst_path = os.path.join(BACKUP_DIR, basename)
+        # print("dst_path: ", dst_path)
+        if os.path.exists(src_path) or os.path.islink(src_path):
+            shutil.copy(src_path, dst_path, follow_symlinks=False)
+            os.remove(src_path)
 
 
 def restore_backup():
@@ -69,12 +70,23 @@ def restore_backup():
         dst_path = os.path.join(HOME_DIR, basename)
 
         if os.path.exists(src_path) or os.path.islink(src_path):
-            try:
-                shutil.copy(src_path, dst_path, follow_symlinks=False)
-            except shutil.SameFileError:
-                print(dst_path, "same as backup, skipped restore")
-            else:
-                print(dst_path, "restored from backup")
+
+            # check if link is duplicate
+            if os.path.islink(src_path) and os.path.islink(dst_path):
+                if os.readlink(src_path) == os.readlink(dst_path):
+                    print(dst_path, "link points to same file, skipped restore")
+                    continue
+            # check if physical file is duplicate
+            if os.path.exists(src_path) and os.path.exists(dst_path):
+                if filecmp.cmp(src_path, dst_path):
+                    print(dst_path, "has same content, skipped restore")
+                    continue
+
+            if os.path.islink(dst_path):
+                os.remove(dst_path)
+
+            shutil.copy(src_path, dst_path, follow_symlinks=False)
+            print(dst_path, "restored from backup")
 
 
 def symlink_new():
@@ -93,6 +105,7 @@ def symlink_new():
             "correctly after backup and still exists!".format(newpath)
         )
         os.symlink(link_target, newpath, os.path.isdir(link_target))
+        print(newpath, "now symlinked to", link_target)
 
 
 if __name__ == "__main__":
