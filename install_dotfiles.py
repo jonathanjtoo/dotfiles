@@ -82,7 +82,8 @@ def restore_backup():
                     print(dst_path, "has same content, skipped restore")
                     continue
 
-            if os.path.islink(dst_path):
+            # need to remove dst_path if either dst or src is a symlink
+            if os.path.islink(dst_path) or os.path.islink(src_path):
                 os.remove(dst_path)
 
             shutil.copy(src_path, dst_path, follow_symlinks=False)
