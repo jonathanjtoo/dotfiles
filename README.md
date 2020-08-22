@@ -32,8 +32,8 @@ To update plugins and upgrade vim-plug, use the custom command:
 When Tmux is opened, tpm should auto-install and download needed plugins.
 To install or update plugins, use tpm's default bindings:
 
-`prefix` + <kbd>I</kbd> (capital i, as in **I**nstall)
-`prefix` + <kbd>U</kbd> (capital u, as in **U**pdate)
+- `prefix` + <kbd>I</kbd> (capital i, as in **I**nstall)
+- `prefix` + <kbd>U</kbd> (capital u, as in **U**pdate)
 
 ## Thanks
 
