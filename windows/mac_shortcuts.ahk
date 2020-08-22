@@ -6,11 +6,11 @@
 ;           /mnt/c/Users/<Your User>/AppData/Roaming/Microsoft/Windows/
 ;           Start\ Menu/Programs/Startup/mac_shortcuts.ahk
 ;-------------------------------------------------------------------------------
-
+#SingleInstance Force
 #MenuMaskKey vkE8  ; Change the masking key to something unassigned such as vkE8.
 SendMode Input
-
 SetTitleMatchMode,2
+
 ;#IfWinActive,VIM
 #IfWinActive
     CAPSLOCK::ESC
@@ -63,9 +63,12 @@ Send ^f
 return
 
 ;Goto Address Bar
-!l::
-Send ^l
-return
+#IfWinActive, ahk_exe chrome.exe
+{
+    !l::
+    Send ^l
+    return
+}
 
 ;Back
 ;![::!Left
