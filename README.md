@@ -10,13 +10,8 @@ cd ~/.dotfiles
 ./install_dotfiles.py
 ```
 
-When Vim is opened, vim-plug should auto-install and download needed plugins.
-To update plugins and upgrade vim-plug, use the custom command:
-
-```sh
-:PU
-```
-
+## Features
+### 1. Backup and restore existing dotfiles
 Backup of existing dotfiles will be saved in `~/.dotfiles_backup/`
 To restore from the backup, use the `-r` option
 
@@ -24,6 +19,21 @@ To restore from the backup, use the `-r` option
 cd ~/.dotfiles
 ./install_dotfiles.py -r
 ```
+
+### 2. Vim-plug (vim plugin manager)
+When Vim is opened, vim-plug should auto-install and download needed plugins.
+To update plugins and upgrade vim-plug, use the custom command:
+
+```sh
+:PU
+```
+
+### 3. TPM (Tmux plugin manager)
+When Tmux is opened, tpm should auto-install and download needed plugins.
+To install or update plugins, use tpm's default bindings:
+
+- `prefix` + <kbd>I</kbd> (capital i, as in **I**nstall)
+- `prefix` + <kbd>U</kbd> (capital u, as in **U**pdate)
 
 ## Thanks
 
