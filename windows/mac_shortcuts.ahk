@@ -62,6 +62,11 @@ return
 Send ^f
 return
 
+;Select all
+!a::
+Send ^a
+return
+
 ;Goto Address Bar
 #IfWinActive, ahk_exe chrome.exe
 {
