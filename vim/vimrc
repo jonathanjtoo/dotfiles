@@ -31,6 +31,23 @@ Plug 'chazy/cscope_maps'
 Plug 'dense-analysis/ale'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+"""""""""" Undo Tree """"""""""
+Plug 'mbbill/undotree'
+nnoremap <F6> :UndotreeToggle<cr>
+
+" no more need for extra backups with undotree
+set nobackup
+
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    let myUndoDir = expand('$HOME/.vim/undodir')
+    if !isdirectory(myUndoDir)
+        call mkdir(myUndoDir, 'p')
+    endif
+    let &undodir = myUndoDir
+    set undofile
+endif
+
 """"""""" tmux related plugins """""""
 Plug 'christoomey/vim-tmux-navigator'
 " Disable tmux navigator when zooming the Vim pane
@@ -120,12 +137,19 @@ set ruler
 set showcmd
 set incsearch
 set wrap linebreak nolist
-" let g:C_InsertFileHeader='no'
-" let g:BASH_InsertFileHeader='no'
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 set splitright
 set splitbelow
 set mouse=a
 set lazyredraw
+
+" swapfiles unified location, mkdir if it doesn't exist
+let mySwapDir = expand('$HOME/.vim/swapfiles//')
+if !isdirectory(mySwapDir)
+    call mkdir(mySwapDir, 'p')
+endif
+let &directory = mySwapDir
 
 "ignore case for files and commands
 if exists("&wildignorecase")
