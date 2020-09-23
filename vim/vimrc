@@ -199,6 +199,8 @@ endif
 " Associate .py files as python files
 au BufRead,BufNewFile *.py set filetype=python
 
+" Associate .it files as Lua files
+au BufReadPost *.it set filetype=lua
 
 " Highlight line if more than 80 characters. (Optional)
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
