@@ -25,12 +25,19 @@ Plug 'morhetz/gruvbox'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'vim-scripts/a.vim'
 "Plug 'vim-scripts/autoload_cscope.vim'
-Plug 'erig0/cscope_dynamic'
+"Plug 'erig0/cscope_dynamic'
 Plug 'jlanzarotta/bufexplorer'
 let g:bufExplorerVersionWarn=0
 Plug 'chazy/cscope_maps'
 Plug 'dense-analysis/ale'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+"""""""""" Git related plugins """"""""""
+if has('nvim') || has('patch-8.0.902')
+    Plug 'mhinz/vim-signify'
+else
+    Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
 
 """""""""" Undo Tree """"""""""
 Plug 'mbbill/undotree'
@@ -78,7 +85,7 @@ Plug 'RyanMillerC/better-vim-tmux-resizer'
 "       1a) open vim in ~ will open last saved session
 "   2) :Prosession <tab-completion to directory>
 " Delete old sessions:
-"   :ProcessionDelete <tab-completion to directory>
+"   :ProsessionDelete <tab-completion to directory>
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 let g:prosession_last_session_dir = '~'
@@ -94,6 +101,8 @@ let g:prosession_last_session_dir = '~'
 let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
 \}
+" set 'python3' for pylint3 or 'python' for pylint (python2)
+let g:ale_python_pylint_executable = 'python3'
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
