@@ -72,6 +72,7 @@ execute "set <M-l>=l"
 set ttimeout ttimeoutlen=50
 Plug 'RyanMillerC/better-vim-tmux-resizer'
 " Plug 'melonmanchan/vim-tmux-resizer'
+" Plug 'roxma/vim-tmux-clipboard'
 
 """"""""" Vim session plugin """"""""
 "Plug 'xolox/vim-misc'
