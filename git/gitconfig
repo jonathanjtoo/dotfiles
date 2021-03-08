@@ -28,5 +28,6 @@
 	st = status
 	stu = status -uno
 	bvv = branch -vv
+	bname = symbolic-ref --short HEAD
 	wl = worktree list
 	alias = config --get-regexp ^alias\\.
