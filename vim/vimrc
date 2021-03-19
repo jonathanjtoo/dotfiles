@@ -35,11 +35,15 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 """""""""" Git related plugins """"""""""
 if has('nvim') || has('patch-8.0.902')
+    " include asynchronous execution
     Plug 'mhinz/vim-signify'
+    " default updatetime 4000ms is not good for async update
+    set updatetime=100
 else
     Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
 endif
 
+Plug 'tpope/vim-fugitive'
 """""""""" Undo Tree """"""""""
 Plug 'mbbill/undotree'
 nnoremap <F6> :UndotreeToggle<cr>
