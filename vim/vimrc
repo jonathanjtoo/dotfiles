@@ -19,6 +19,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+nnoremap <leader>n :NERDTreeToggle<CR>
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'morhetz/gruvbox'
@@ -89,7 +90,7 @@ Plug 'RyanMillerC/better-vim-tmux-resizer'
 "   :ProsessionDelete <tab-completion to directory>
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
-let g:prosession_last_session_dir = '~'
+"let g:prosession_last_session_dir = '~'
 
 """"""""" Python plugins """""""""""
 "" AutoComplete for many languages
