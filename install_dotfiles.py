@@ -18,6 +18,7 @@ DOTFILES = [
     "bash/bashrc",
     "bash/bash_profile",
     "bash/bash_aliases",
+    "zsh/zshrc",
     "git/gitconfig",
     "git/gitignore_global",
     "tmux/tmux.conf",
