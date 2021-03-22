@@ -21,7 +21,7 @@
 #	default = simple
     default = current
 [alias]
-	superclean = "!f(){ git clean -xffd && git checkout .;};f"
+	superclean = "!f(){ git clean -xffd && git checkout . && git reset --hard;};f"
 	pwd = !pwd
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 	logone = log --oneline
