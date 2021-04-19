@@ -1,14 +1,14 @@
 if v:progname =~? "evim"
-  finish
+    finish
 endif
 
 set nocompatible    " be iMproved
 
 " Auto-install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -26,6 +26,7 @@ let g:bufExplorerVersionWarn=0
 Plug 'chazy/cscope_maps'
 Plug 'dense-analysis/ale'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'vim-airline/vim-airline'
 
 """""""""" Git related plugins """"""""""
 if has('nvim') || has('patch-8.0.902')
@@ -34,7 +35,9 @@ if has('nvim') || has('patch-8.0.902')
     " default updatetime 4000ms is not good for async update
     set updatetime=100
 else
-    Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+    if version >= 704
+        Plug 'airblade/vim-gitgutter'
+    endif
 endif
 
 Plug 'tpope/vim-fugitive'
@@ -99,15 +102,15 @@ Plug 'dhruvasagar/vim-prosession'
 "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 let g:ale_linters = {
-\   'python': ['flake8', 'pylint'],
-\}
+            \   'python': ['flake8', 'pylint'],
+            \}
 " set 'python3' for pylint3 or 'python' for pylint (python2)
 let g:ale_python_pylint_executable = 'python3'
 
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'python': ['black', 'autopep8', 'isort'],
-\}
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'python': ['black', 'autopep8', 'isort'],
+            \}
 
 " Python's indent folding
 Plug 'tmhedberg/SimpylFold'
@@ -125,15 +128,15 @@ Plug 'lervag/vimtex'
 " set default flavor for .tex file
 let g:tex_flavor = 'xelatex'
 let g:vimtex_compiler_latexmk_engines = {
-        \ '_'                : '-xelatex',
-        \ 'pdflatex'         : '-pdf',
-        \ 'dvipdfex'         : '-pdfdvi',
-        \ 'lualatex'         : '-lualatex',
-        \ 'xelatex'          : '-xelatex',
-        \ 'context (pdftex)' : '-pdf -pdflatex=texexec',
-        \ 'context (luatex)' : '-pdf -pdflatex=context',
-        \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
-        \}
+            \ '_'                : '-xelatex',
+            \ 'pdflatex'         : '-pdf',
+            \ 'dvipdfex'         : '-pdfdvi',
+            \ 'lualatex'         : '-lualatex',
+            \ 'xelatex'          : '-xelatex',
+            \ 'context (pdftex)' : '-pdf -pdflatex=texexec',
+            \ 'context (luatex)' : '-pdf -pdflatex=context',
+            \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
+            \}
 
 " Plug 'LaTeX-Box-Team/LaTeX-Box'
 " Plug 'vim-latex/vim-latex'
@@ -191,8 +194,8 @@ endif
 
 "highlight search results
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+    syntax on
+    set hlsearch
 endif
 
 set background=dark
@@ -202,20 +205,20 @@ filetype plugin indent on
 
 "Diff modified vs original shortcut
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                \ | wincmd p | diffthis
 endif
 
 
 "ignore LaTeX-Box's indent
 let s:extfname = expand("%:e")
 if s:extfname ==? "tex" || s:extfname ==? "cls"
-  let g:LatexBox_custom_indent='0'
+    let g:LatexBox_custom_indent='0'
 endif
 
 " <CR> redraws the screen and removes any search highlighting.
 if maparg('<CR>', 'n') ==# ''
-  nnoremap <silent> <CR> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><CR>
+    nnoremap <silent> <CR> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><CR>
 endif
 
 " Associate .py files as python files
@@ -252,8 +255,8 @@ command TrimWhiteSpace call TrimWhiteSpace()
 
 " Use :ToggleCursorLineCol to toggle highlights to check indents
 function! ToggleCursorLineCol()
-  set cursorcolumn!
-  set cursorline!
+    set cursorcolumn!
+    set cursorline!
 endfunction
 command ToggleCursorLineCol call ToggleCursorLineCol()
 nnoremap <F5> :ToggleCursorLineCol<CR>
