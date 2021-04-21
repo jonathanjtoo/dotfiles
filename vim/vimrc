@@ -12,8 +12,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 nnoremap <leader>n :NERDTreeToggle<CR>
+Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'morhetz/gruvbox'
@@ -27,6 +28,8 @@ Plug 'chazy/cscope_maps'
 Plug 'dense-analysis/ale'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-airline/vim-airline'
+" show lint errors and warning in airline.
+let g:airline#extensions#ale#enabled = 1
 
 """""""""" Git related plugins """"""""""
 if has('nvim') || has('patch-8.0.902')
