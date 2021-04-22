@@ -40,6 +40,7 @@ if has('nvim') || has('patch-8.0.902')
 else
     if version >= 704
         Plug 'airblade/vim-gitgutter'
+        set updatetime=100
     endif
 endif
 
@@ -103,6 +104,10 @@ Plug 'dhruvasagar/vim-prosession'
 "let g:ycm_autoclose_preview_window_after_completion=1
 "" shortcut to goto definition
 "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+if version >= 703
+    Plug 'Yggdroot/indentLine'
+    let g:indentLine_fileType = ['python']
+endif
 
 let g:ale_linters = {
             \   'python': ['flake8', 'pylint'],
