@@ -107,29 +107,35 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#auto-complete ignore case
+# auto-complete ignore case
 bind 'set completion-ignore-case on'
 
-#auto-complete ignore hyphen/underscore
+# auto-complete ignore hyphen/underscore
 bind 'set completion-map-case on'
 
-#auto-complete show all if ambiguous
+# auto-complete show all if ambiguous
 bind 'set show-all-if-ambiguous on'
 
-#auto-complete show all if unmodified
+# auto-complete show all if unmodified
 bind 'set show-all-if-unmodified on'
 
-#show auto-complete prefix + list
+# show auto-complete prefix + list
 bind 'set completion-prefix-display-length 2'
 
-#enable forward search with Ctrl-S in Bash (default emacs mapping)
+# Fix environment variable expand issue for path auto-completion
+if (( (BASH_VERSINFO[0] > 4) || \
+    (BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 2) ))
+    then shopt -s direxpand
+fi
+
+# enable forward search with Ctrl-S in Bash (default emacs mapping)
 stty -ixon
 
-#auto-complete with LS_COLORS 
-#for bash 4.3 and later
+# auto-complete with LS_COLORS
+# for bash 4.3 and later
 bind 'set colored-stats on'
 
-#Use VIM's less.sh for syntax highlighting
+# Use VIM's less.sh for syntax highlighting
 VLESS=$(find /usr/share/vim -name 'less.sh')
 if [ ! -z $VLESS ]; then
     alias less=$VLESS
