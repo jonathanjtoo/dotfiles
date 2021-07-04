@@ -80,6 +80,19 @@ Plug 'RyanMillerC/better-vim-tmux-resizer'
 " Plug 'melonmanchan/vim-tmux-resizer'
 " Plug 'roxma/vim-tmux-clipboard'
 
+""""""""" copy/clipboard in SSH related plugins """""""
+Plug 'ojroques/vim-oscyank'
+" if s:auto && exists('##TextYankPost')
+if version >= 801  " 8.1 added TextYankPost
+    " copy with any yank operation
+    "autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
+    " copy with "+y (vim system clipboard register)
+    autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | OSCYankReg + | endif
+else
+    " enter visual mode and use "+y
+    vnoremap "+y :OSCYank<CR>
+endif
+
 """"""""" Vim session plugin """"""""
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-session'
