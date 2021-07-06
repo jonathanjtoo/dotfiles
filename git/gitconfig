@@ -30,4 +30,10 @@
 	bvv = branch -vv
 	bname = symbolic-ref --short HEAD
 	wl = worktree list
+	a = add
+	ap = add -p
+	c = commit
+	cm = commit -m
+	d = diff
+	dc = diff --cached
 	alias = config --get-regexp ^alias\\.
