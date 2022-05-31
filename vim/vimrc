@@ -119,7 +119,8 @@ Plug 'dhruvasagar/vim-prosession'
 "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 if version >= 703
     Plug 'Yggdroot/indentLine'
-    let g:indentLine_fileType = ['python']
+    let g:indentLine_fileType = ['python', 'yaml']
+    let g:indentLine_char = '⦙'
 endif
 
 let g:ale_linters = {
@@ -132,6 +133,7 @@ let g:ale_fixers = {
             \   '*': ['remove_trailing_lines', 'trim_whitespace'],
             \   'python': ['black', 'autopep8', 'isort'],
             \}
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " Python's indent folding
 Plug 'tmhedberg/SimpylFold'
@@ -139,6 +141,9 @@ Plug 'tmhedberg/SimpylFold'
 let g:SimpylFold_docstring_preview=1
 " Python syntax
 Plug 'hdima/python-syntax'
+
+"""" YAML """"
+Plug 'pedrohdz/vim-yaml-folds'
 
 
 """" PHP """"
@@ -230,6 +235,9 @@ if !exists(":DiffOrig")
                 \ | wincmd p | diffthis
 endif
 
+" YAML settings
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+set foldlevelstart=20
 
 "ignore LaTeX-Box's indent
 let s:extfname = expand("%:e")
