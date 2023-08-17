@@ -28,6 +28,7 @@ Plug 'chazy/cscope_maps'
 Plug 'dense-analysis/ale'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-airline/vim-airline'
+Plug 'chaoren/vim-wordmotion'
 " show lint errors and warning in airline.
 let g:airline#extensions#ale#enabled = 1
 
