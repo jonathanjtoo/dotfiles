@@ -5,9 +5,19 @@ This repository includes all my dotfiles setup.
 ## Installation
 
 ```sh
-git clone https://github.com/jonathanjtoo/dotfiles.git ~/.dotfiles
+git clone git@github.com:jonathanjtoo/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install_dotfiles.py
+```
+If needed, generate and add ssh key to GitHub settings.
+
+### MacOS
+Vim and Tmux are easily installed from [Homebrew](https://brew.sh/)
+Tmux paste with current config is also most compatible with iterm2
+```sh
+brew install tmux
+brew install cask macvim
+brew install cask iterm2
 ```
 
 ## Features
