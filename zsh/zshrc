@@ -20,10 +20,11 @@ setopt HIST_IGNORE_SPACE # Don't preserve spaces. You may want to turn it off
 setopt NO_HIST_BEEP # Don't beep
 #setopt SHARE_HISTORY # Share history between session/terminals
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+# Turnoff powerlevel10k for now, revisit later
+#source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
 #Common Aliases
