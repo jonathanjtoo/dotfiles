@@ -57,3 +57,5 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 
 
 export PATH="/usr/local/sbin:$PATH"
+# enable python3 as python alias on Homebrew in macOS
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
