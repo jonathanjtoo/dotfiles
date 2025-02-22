@@ -83,20 +83,11 @@ Plug 'RyanMillerC/better-vim-tmux-resizer'
 
 """"""""" copy/clipboard in SSH related plugins """""""
 Plug 'ojroques/vim-oscyank'
-" if s:auto && exists('##TextYankPost')
-if version >= 801  " 8.1 added TextYankPost
-    " copy with any yank operation
-    "autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankRegister "' | endif
-    " copy with "+y (vim system clipboard register)
-    autocmd TextYankPost *
-    \ if v:event.operator is 'y' && v:event.regname is '+' |
-    \ execute 'OSCYankRegister +' |
-    \ endif
+let g:oscyank_max_length = 1000000
+" [replaced] previous as it did not work with Debian unnamedplus clipboard
+" enter visual mode and use "+y
+vnoremap "+y :OSCYankVisual<CR>
 
-else
-    " enter visual mode and use "+y
-    vnoremap "+y :OSCYankVisual<CR>
-endif
 
 """"""""" Vim session plugin """"""""
 "Plug 'xolox/vim-misc'
@@ -220,7 +211,7 @@ endif
 if has('unnamedplus')
     set clipboard=unnamedplus
 else
-    set clipboard=unnamed
+    set clipboard+=unnamed
 endif
 
 "highlight search results
