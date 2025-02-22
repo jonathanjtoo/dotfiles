@@ -19,6 +19,14 @@ brew install cask macvim
 brew install cask iterm2
 ```
 
+### Linux-specific
+* Vim and Tmux are installed from your distribution's package manager
+* curl is needed for Vim-plug's auto-install
+*   example in Ubuntu using apt:
+```sh
+sudo apt install tmux vim curl
+```
+
 ## Features
 ### 1. Backup and restore existing dotfiles
 * Backup of existing dotfiles will be saved in `~/.dotfiles_backup/`
