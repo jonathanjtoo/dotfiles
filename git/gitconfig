@@ -23,7 +23,7 @@
 [alias]
 	superclean = "!f(){ git clean -xffd && git checkout . && git reset --hard;};f"
 	pwd = !pwd
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN/%aE>%Creset' --abbrev-commit --date=relative
 	logone = log --oneline
 	st = status
 	stu = status -uno
