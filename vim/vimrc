@@ -5,13 +5,22 @@ endif
 set nocompatible    " be iMproved
 
 " Auto-install vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+let data_dir = has('win32') || has('win64') ? '$HOME\vimfiles' : '~/.vim'
+if empty(glob(data_dir.'/autoload/plug.vim'))
+  if has('win32') || has('win64')
+    silent execute '!powershell -Command "New-Item -Path "'.data_dir.' -Name autoload -Type Directory -Force; Invoke-WebRequest -Uri https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -OutFile '.data_dir.'\autoload\plug.vim"'
+  else
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  endif
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+" Remap a few keys for Windows behavior
+if has('win32') || has('win64')
+    source $VIMRUNTIME/mswin.vim
+endif
+
+call plug#begin(data_dir.'/plugged')
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 nnoremap <leader>n :NERDTreeToggle<CR>
 Plug 'preservim/nerdcommenter'
@@ -55,7 +64,7 @@ set nobackup
 
 " Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
-    let myUndoDir = expand('$HOME/.vim/undodir')
+    let myUndoDir = expand(data_dir.'/undodir')
     if !isdirectory(myUndoDir)
         call mkdir(myUndoDir, 'p')
     endif
@@ -104,6 +113,7 @@ vnoremap "+y :OSCYankVisual<CR>
 "   :ProsessionDelete <tab-completion to directory>
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
+let g:prosession_dir = expand(data_dir.'/session/')
 "let g:prosession_last_session_dir = '~'
 
 """"""""" Python plugins """""""""""
@@ -192,7 +202,7 @@ set mouse=a
 set lazyredraw
 
 " swapfiles unified location, mkdir if it doesn't exist
-let mySwapDir = expand('$HOME/.vim/swapfiles//')
+let mySwapDir = expand(data_dir.'/swapfiles//')
 if !isdirectory(mySwapDir)
     call mkdir(mySwapDir, 'p')
 endif
