@@ -1,0 +1,18 @@
+# Print entire arrays/strings without truncation
+set print elements 0
+
+# Use line breaks and indentation for structs and arrays
+set print pretty on
+
+# Prevent pausing output—scroll freely
+set pagination off
+
+# Always show array contents
+set print array on
+
+# Don’t collapse repeated elements (e.g., "[7] 0")
+set print repeats 0
+
+#tui enable
+#layout split
+#tui reg general
