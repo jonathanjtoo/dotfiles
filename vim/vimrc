@@ -316,3 +316,14 @@ nnoremap <silent> <Leader><C-x> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
 
+function! ToggleIndentModes()
+    if &autoindent
+        set noautoindent nosmartindent nocindent
+        echo "Indentation OFF"
+    else
+        set autoindent smartindent cindent
+        echo "Indentation ON"
+    endif
+endfunction
+command ToggleIndentModes call ToggleIndentModes()
+nnoremap <F7> :ToggleIndentModes<CR>

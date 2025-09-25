@@ -22,6 +22,7 @@ DOTFILES = [
     "git/gitconfig",
     "git/gitignore_global",
     "tmux/tmux.conf",
+    "gdb/gdbinit",
 ]
 
 HOME_DIR = os.path.expanduser("~")
