@@ -38,6 +38,10 @@ Plug 'dense-analysis/ale'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-airline/vim-airline'
 Plug 'chaoren/vim-wordmotion'
+Plug 'szw/vim-maximizer'
+nnoremap <C-W>z :MaximizerToggle<CR>
+vnoremap <C-W>z :MaximizerToggle<CR>gv
+inoremap <C-W>z <C-o>:MaximizerToggle<CR>
 " show lint errors and warning in airline.
 let g:airline#extensions#ale#enabled = 1
 
