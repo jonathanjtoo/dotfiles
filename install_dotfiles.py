@@ -23,6 +23,7 @@ DOTFILES = [
     "git/gitignore_global",
     "tmux/tmux.conf",
     "gdb/gdbinit",
+    "editorconfig/editorconfig",
 ]
 
 HOME_DIR = os.path.expanduser("~")
