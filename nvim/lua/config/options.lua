@@ -3,13 +3,38 @@
 -- Add any additional options here
 
 -- Set inital formatting options
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.opt.expandtab = true        -- Use spaces instead of tabs
+vim.opt.tabstop = 4             -- Visual width of a tab character
+vim.opt.shiftwidth = 4          -- Indentation width for >> and <<
+vim.opt.softtabstop = 4         -- Spaces inserted when pressing <Tab>
+vim.opt.autoindent = true       -- Copy indent from current line on new line
 
 -- Set minimal number of screen lines to keep above or below the cursor
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
+
+-- UI and navigation
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.ruler = true
+vim.opt.showcmd = true
+vim.opt.mouse = "a"
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.lazyredraw = true
+
+-- Search behavior
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.incsearch = true
+
+-- Editing behavior
+vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.history = 50
+
+-- Wrapping
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.list = false
 
 if not vim.g.vscode then
   vim.opt.clipboard:append "unnamedplus"
