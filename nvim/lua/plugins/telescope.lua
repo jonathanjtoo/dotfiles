@@ -57,8 +57,9 @@ return {
       end, { desc = "Buffers in project root" })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
       vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = "LSP references" })
-      vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = "Document symbols" })
+      vim.keymap.set('n', '<leader>fd', builtin.lsp_document_symbols, { desc = "Document symbols" })
       vim.keymap.set('n', '<leader>fw', builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
+      vim.keymap.set("n", "<leader>fs", builtin.grep_string, { desc = "Search word under cursor" })
     end
   }
 }
