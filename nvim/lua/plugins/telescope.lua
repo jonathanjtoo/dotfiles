@@ -63,6 +63,7 @@ return {
       vim.keymap.set('n', '<leader>fr', builtin.lsp_references, { desc = "LSP references" })
       vim.keymap.set('n', '<leader>fd', builtin.lsp_document_symbols, { desc = "Document symbols" })
       vim.keymap.set('n', '<leader>fw', builtin.lsp_workspace_symbols, { desc = "Workspace symbols" })
+      vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Pick buffer" })
     end
   }
 }
