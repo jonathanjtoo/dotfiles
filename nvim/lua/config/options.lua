@@ -36,11 +36,12 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.list = false
 
--- Use wilder.nvim instead now
--- -- Enable case-insensitive filename and command completion
--- if vim.fn.exists("&wildignorecase") == 1 then
---   vim.opt.wildignorecase = true
--- end
+-- Enable case-insensitive filename and command completion
+if vim.fn.exists("&wildignorecase") == 1 then
+  vim.opt.wildignorecase = true
+end
+
+-- Use wilder.nvim instead for wildmenu now
 -- -- Enable wildmenu and configure wildmode behavior
 -- if vim.fn.has("wildmenu") == 1 then
 --   vim.opt.wildmenu = true
