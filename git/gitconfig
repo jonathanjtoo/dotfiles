@@ -2,7 +2,7 @@
 	name = Jonathan Too
 	email = jonathanjtoo@gmail.com
 [core]
-	editor = vim
+	editor = nvim -f
 	excludesfile = ~/.gitignore_global
 [color]
 	branch = auto
@@ -38,6 +38,11 @@
 	dc = diff --cached
 	alias = config --get-regexp ^alias\\.
 [merge]
-	tool = vimdiff
+	tool = nvimdiff
 [mergetool]
+	cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" "$MERGED"
 	prompt = false
+#[includeIf "gitdir:~/prpLink/"]
+#    path = ~/.gitconfig-wsl
+[rerere]
+	enabled = true

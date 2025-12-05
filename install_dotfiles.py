@@ -21,6 +21,7 @@ DOTFILES = [
     "zsh/zshrc",
     "git/gitconfig",
     "git/gitignore_global",
+    "git/gitattributes",
     "tmux/tmux.conf",
     "gdb/gdbinit",
     "editorconfig/editorconfig",
@@ -124,9 +125,8 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    check_dotfiles_list()
-
     if args.restore:
+        check_dotfiles_list()
         restore_backup()
     else:
         backup_old()
