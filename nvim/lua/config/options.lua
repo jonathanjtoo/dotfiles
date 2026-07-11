@@ -62,3 +62,28 @@ if not vim.g.vscode then
     },
   }
 end
+
+-- Toggle list mode with custom listchars
+vim.api.nvim_create_user_command("ToggleList", function()
+  if vim.o.list then
+    -- Turn off list mode
+    vim.o.list = false
+    print("List mode disabled")
+  else
+    -- Turn on list mode with custom symbols
+    vim.o.list = true
+    vim.o.listchars = "tab:>-,trail:~,extends:>,precedes:<,nbsp:%,eol:$"
+    print("List mode enabled")
+  end
+end, {})
+
+-- Toggle .editorconfig support
+vim.api.nvim_create_user_command("ToggleEditorConfig", function()
+  if vim.g.editorconfig == false then
+    vim.g.editorconfig = true
+    print("EditorConfig enabled")
+  else
+    vim.g.editorconfig = false
+    print("EditorConfig disabled")
+  end
+end, {})
