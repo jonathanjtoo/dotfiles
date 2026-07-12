@@ -1,0 +1,14 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Contents checksum: {{ include "dot_config/autohotkey/mac_shortcuts.ahk" | sha256sum }}
+
+$startupFolder = [Environment]::GetFolderPath("Startup")
+$shortcutPath = Join-Path $startupFolder "mac_shortcuts.lnk"
+$targetPath = "$env:USERPROFILE\.config\autohotkey\mac_shortcuts.ahk"
+
+$WScriptShell = New-Object -ComObject WScript.Shell
+$Shortcut = $WScriptShell.CreateShortcut($shortcutPath)
+$Shortcut.TargetPath = $targetPath
+$Shortcut.Save()
+
+Write-Host "AutoHotkey startup shortcut created."
+{{ end -}}

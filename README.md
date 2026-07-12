@@ -1,57 +1,113 @@
-# Jonathan's dotfiles
+# dotfiles
 
-This repository includes all my dotfiles setup.
+My personal dotfiles, managed with [chezmoi](https://www.chezmoi.io/). Works on macOS, Linux, and Windows.
 
-## Installation
-If git clone below shows permission error, may need to generate and add ssh key to GitHub settings.
-```sh
-git clone git@github.com:jonathanjtoo/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-./install_dotfiles.py
-```
+## What's included
 
-### MacOS-specific
-* Vim and Tmux are easily installed from [Homebrew](https://brew.sh/)
-* Tmux paste with current config is also most compatible with iterm2
-```sh
-brew install tmux
-brew install cask macvim
-brew install cask iterm2
-```
+- `bash` / `zsh` — shell config
+- `git` — global config, ignore rules, attributes
+- `vim` — editor config
+- `nvim` (LazyVim-based) — deployed to `~/.config/nvim`
+- `tmux` — terminal multiplexer config
+- `gdb` — debugger config
+- `editorconfig` — cross-editor formatting defaults
+- `autohotkey` (Windows only) — remaps to make Windows keyboard shortcuts feel closer to macOS
 
-### Linux-specific
-* Vim and Tmux are installed from your distribution's package manager
-* curl is needed for Vim-plug's auto-install
-*   example in Ubuntu using apt:
-```sh
-sudo apt install tmux vim curl
-```
+## Quick start on a new machine
 
-## Features
-### 1. Backup and restore existing dotfiles
-* Backup of existing dotfiles will be saved in `~/.dotfiles_backup/`
-* To restore from the backup, use the `-r` option
+### macOS / Linux
+
+Clone the repo into chezmoi's default source directory and run the install script:
 
 ```sh
-cd ~/.dotfiles
-./install_dotfiles.py -r
+git clone https://github.com/<your-github-username>/dotfiles.git ~/.local/share/chezmoi
+cd ~/.local/share/chezmoi
+./install.sh
 ```
 
-### 2. Vim-plug (vim plugin manager)
-* When Vim is opened, vim-plug should auto-install and download needed plugins.
-* To update plugins and upgrade vim-plug, use the custom command:
+`install.sh` installs chezmoi if it isn't already present, then applies every dotfile to your home directory. Because the repo lives at chezmoi's default source path, no `--source` flag or extra config is needed — `chezmoi update`, `chezmoi diff`, `chezmoi cd`, etc. all work out of the box afterward.
+
+### Windows
+
+Clone the repo into chezmoi's default source directory and run the install script from PowerShell:
+
+```powershell
+git clone https://github.com/<your-github-username>/dotfiles.git $HOME\.local\share\chezmoi
+cd $HOME\.local\share\chezmoi
+.\install.ps1
+```
+
+`install.ps1` installs chezmoi via winget if needed, then applies the dotfiles the same way. On first apply, a `run_onchange_before_` script installs AutoHotkey (via winget) if it isn't already present, and a `run_onchange_after_` script registers the keyboard-shortcut script to launch at login.
+
+## Day-to-day usage
+
+| Task | Command |
+|---|---|
+| Edit a dotfile and open it in `$EDITOR` | `chezmoi edit ~/.zshrc` |
+| See what would change before applying | `chezmoi diff` |
+| Apply pending changes to your home directory | `chezmoi apply` |
+| Pull latest changes from git and apply them | `chezmoi update` |
+| Add a new file to be managed | `chezmoi add ~/.some_config` |
+| Add an entire directory | `chezmoi add -r ~/.config/some_tool` |
+| Open the source directory in your shell | `chezmoi cd` |
+| Re-import changes made directly to a deployed file | `chezmoi re-add` |
+
+**Recommended workflow when editing:** use `chezmoi edit --apply <file>` to edit and immediately apply in one step, or just edit the deployed file directly and run `chezmoi re-add` afterward to sync the change back into the source directory before committing.
+
+## Repo layout
+
+This repo uses [`.chezmoiroot`](https://www.chezmoi.io/reference/configuration-file/#root) to keep non-dotfile content (this README, install scripts, Windows-only tools) separate from the actual dotfiles, which live under `home/`:
+
+```
+dotfiles/
+├── .chezmoiroot          → points chezmoi at "home"
+├── README.md
+├── windows/
+│   └── mac_shortcuts.ahk source, notes, etc.
+└── home/                 ← chezmoi's source root, mirrors $HOME
+    ├── .chezmoiignore    → OS-specific exclusions
+    ├── .chezmoiscripts/  → install/setup scripts
+    ├── dot_bashrc
+    ├── dot_zshrc
+    ├── dot_gitconfig
+    ├── dot_vimrc
+    ├── dot_tmux.conf
+    ├── dot_gdbinit
+    ├── dot_editorconfig
+    └── dot_config/
+        ├── nvim/         → deployed to ~/.config/nvim
+        └── autohotkey/   → Windows only, see .chezmoiignore
+```
+
+Naming conventions used throughout:
+
+| Source prefix | Effect |
+|---|---|
+| `dot_` | Becomes `.` in the deployed path |
+| `private_` | Deployed with restrictive permissions (mode 0600) |
+| `executable_` | Deployed with the executable bit set |
+| `run_once_` | Script runs once, first time it's encountered |
+| `run_onchange_` | Script re-runs whenever its own content changes |
+| `_before` / `_after` (in script names) | Controls whether a script runs before or after files are applied |
+
+## Templating
+
+Some files use Go templating (`.tmpl` suffix) to vary by machine, keyed off built-in variables like `.chezmoi.os` (`darwin` / `linux` / `windows`) and `.chezmoi.arch`. See [chezmoi's template docs](https://www.chezmoi.io/user-guide/templating/) for the full syntax.
+
+## Making changes
 
 ```sh
-:PU
+chezmoi cd              # jump into the source directory
+# edit files as needed
+git add -A
+git commit -m "Update config"
+git push
 ```
 
-### 3. TPM (Tmux plugin manager)
-- When Tmux is opened, tpm should auto-install and download needed plugins.
-- To install or update plugins, use tpm's default bindings:
+Then on any other machine:
 
-  - `prefix` + <kbd>I</kbd> (capital i, as in **I**nstall)
-  - `prefix` + <kbd>U</kbd> (capital u, as in **U**pdate)
+```sh
+chezmoi update
+```
 
-## Thanks
-
-Organization based on [Zack Holman](http://github.com/holman)'s brilliantly categorized [dotfiles](http://github.com/holman/dotfiles). I'm looking forward to adding more directories as I add more to my toolkit. Next stop, zsh!
+pulls the latest commit and applies it.
