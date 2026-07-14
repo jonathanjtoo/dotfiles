@@ -65,6 +65,7 @@ dotfiles/
 ├── windows/
 │   └── mac_shortcuts.ahk source, notes, etc.
 └── home/                 ← chezmoi's source root, mirrors $HOME
+    ├── .chezmoiversion   → minimum required chezmoi version
     ├── .chezmoiignore    → OS-specific exclusions
     ├── .chezmoiscripts/  → install/setup scripts
     ├── dot_bashrc
@@ -89,6 +90,10 @@ Naming conventions used throughout:
 | `run_once_` | Script runs once, first time it's encountered |
 | `run_onchange_` | Script re-runs whenever its own content changes |
 | `_before` / `_after` (in script names) | Controls whether a script runs before or after files are applied |
+
+## Requirements
+
+This repo pins a minimum chezmoi version via [`.chezmoiversion`](https://www.chezmoi.io/reference/source-state-attributes/#the-chezmoiversion-file). If your installed chezmoi is older than the pinned version, commands like `chezmoi apply` will refuse to run and tell you to upgrade, rather than failing on an unrecognized attribute or template function. `install.sh`/`install.ps1` install the latest chezmoi on a fresh machine, so this mainly guards against a pre-existing, outdated chezmoi already on `$PATH`.
 
 ## Templating
 
