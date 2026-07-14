@@ -42,7 +42,17 @@
 [mergetool]
 	cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" "$MERGED"
 	prompt = false
-#[includeIf "gitdir:~/prpLink/"]
-#    path = ~/.gitconfig-wsl
 [rerere]
 	enabled = true
+
+[include]
+    path = ~/.gitconfig-local
+
+# Optional include work related specific reference in ~/.gitconfig-local
+# Then the actual items in ~/.gitconfig-work
+# gitdir/i for case-insensitivity
+# ** for wildcard match
+#[includeIf "gitdir/i:~/<project_dir>/"]
+#	path = ~/.gitconfig-work
+#[includeIf "gitdir/i:~/proj**/"]
+#	path = ~/.gitconfig-work
