@@ -144,3 +144,16 @@ fi
 # Ubuntu with "keychain" installed
 eval `keychain -q --eval --agents ssh id_ed25519_gerritU22`
 eval `keychain -q --eval --agents ssh id_ed25519_github`
+
+# Machine-specific overrides (work secrets, internal tool paths, etc.)
+# This file is intentionally never committed — see .chezmoiignore
+if [ -f "$HOME/.bashrc-local" ]; then
+    source "$HOME/.bashrc-local"
+fi
+
+# if overrides take up multiple files, use a local directory instead
+if [ -d "$HOME/.bashrc-local.d" ]; then
+    for f in "$HOME/.bashrc-local.d"/*.sh; do
+        [ -f "$f" ] && source "$f"
+    done
+fi
