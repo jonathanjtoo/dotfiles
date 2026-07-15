@@ -1,3 +1,28 @@
 {{ if ne .chezmoi.os "windows" }}
 .config/autohotkey
 {{ end }}
+
+# Machine-local files that must NEVER be managed or committed by chezmoi.
+# These are created/edited by hand, directly on each machine, and are
+# referenced from the public dotfiles via include/includeIf/source-file
+# mechanisms that silently no-op if the file is missing.
+
+# git — work identity (per work-machine, holds work email etc.)
+.gitconfig-work
+
+# git — general local overrides (optional, safe to be empty/missing)
+.gitconfig-local
+
+# ssh — work-only hosts/identities
+.ssh/config-work
+.ssh/id_*
+.ssh/*.pem
+.ssh/known_hosts
+.ssh/known_hosts.old
+
+# bash — machine-specific env vars/aliases
+.bashrc-local
+.bashrc-local.d
+
+# tmux — machine-specific overrides
+.tmux.conf.local

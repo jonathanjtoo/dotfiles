@@ -1,0 +1,18 @@
+# dot_ssh/private_config  (public, chezmoi-managed → deploys to ~/.ssh/config)
+
+Include ~/.ssh/config-work
+
+# Host github-work
+#     HostName github.com
+#     User git
+#     IdentityFile ~/.ssh/id_ed25519_work
+#     IdentitiesOnly yes
+
+# Need to change personal repo remote upstream:
+# git remote set-url upstream git@github-personal:<userid>/<repo>.git
+Host github-personal
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519_github
+    IdentitiesOnly yes
+
