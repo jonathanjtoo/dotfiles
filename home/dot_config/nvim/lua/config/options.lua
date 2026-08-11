@@ -48,19 +48,57 @@ end
 --   vim.opt.wildmode = { "list", "longest", "full" }
 -- end
 
-if not vim.g.vscode then
+-- Clipboard setup: OSC 52 when relayed through tmux/SSH,
+-- pbcopy/pbpaste for local macOS GUI/terminal (including VimR)
+if vim.g.vscode then
+  -- vscode-neovim manages the clipboard itself; do nothing
+elseif os.getenv("TMUX") or os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION") then
   vim.opt.clipboard:append "unnamedplus"
   vim.g.clipboard = {
-    name = 'OSC 52',
+    name = "OSC 52",
     copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-      ['*'] = require('vim.ui.clipboard.osc52').copy '*',
+      ["+"] = require("vim.ui.clipboard.osc52").copy "+",
+      ["*"] = require("vim.ui.clipboard.osc52").copy "*",
     },
     paste = {
-      ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-      ['*'] = require('vim.ui.clipboard.osc52').paste '*',
+      ["+"] = require("vim.ui.clipboard.osc52").paste "+",
+      ["*"] = require("vim.ui.clipboard.osc52").paste "*",
     },
   }
+elseif vim.fn.has("mac") == 1 then
+  vim.opt.clipboard:append "unnamedplus"
+  vim.g.clipboard = {
+    name = "macOS-clipboard",
+    copy = {
+      ["+"] = "pbcopy",
+      ["*"] = "pbcopy",
+    },
+    paste = {
+      ["+"] = "pbpaste",
+      ["*"] = "pbpaste",
+    },
+    cache_enabled = 0,
+  }
+elseif vim.fn.has("unix") == 1 then
+  vim.opt.clipboard:append "unnamedplus"
+  if os.getenv("WAYLAND_DISPLAY") then
+    vim.g.clipboard = {
+      name = "wl-clipboard",
+      copy = { ["+"] = "wl-copy", ["*"] = "wl-copy" },
+      paste = { ["+"] = "wl-paste", ["*"] = "wl-paste" },
+      cache_enabled = 0,
+    }
+  else
+    vim.g.clipboard = {
+      name = "xclip",
+      copy = { ["+"] = "xclip -selection clipboard", ["*"] = "xclip -selection primary" },
+      paste = { ["+"] = "xclip -selection clipboard -o", ["*"] = "xclip -selection primary -o" },
+      cache_enabled = 0,
+    }
+  end
+elseif vim.fn.has("win32") == 1 then
+  vim.opt.clipboard:append "unnamedplus"
+  -- win32yank usually auto-detected by nvim, no override needed
 end
 
 -- Toggle list mode with custom listchars
