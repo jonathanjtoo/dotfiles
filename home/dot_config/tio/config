@@ -1,0 +1,3 @@
+[default]
+timestamp = true
+timestamp-format = iso8601

@@ -12,3 +12,10 @@ alias pacup="echo 'pacman -Syu --aur --devel' && pacman -Syu --aur --devel"
 #Mac only
 alias brewup="echo 'brew update && brew upgrade && brew cask list | xargs brew cask upgrade && brew cleanup' \
 && brew update && brew upgrade && brew cask list | xargs brew cask upgrade && brew cleanup"
+
+#Linux
+#tio is for serial console connection
+#  use a newer version from snap if installed and available
+if [ -x /snap/bin/tio ]; then
+    alias tio=/snap/bin/tio
+fi
