@@ -1,5 +1,18 @@
 {{ if ne .chezmoi.os "windows" }}
 .config/autohotkey
+#autohotkey/
+{{ end }}
+
+{{ if eq .chezmoi.os "windows" }}
+.zshrc
+.zshenv
+.zprofile
+
+.bashrc
+.bash_aliases
+.bash_profile
+
+.tmux.conf
 {{ end }}
 
 # Machine-local files that must NEVER be managed or committed by chezmoi.
