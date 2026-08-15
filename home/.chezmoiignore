@@ -13,6 +13,7 @@
 .bash_profile
 
 .tmux.conf
+.config/tmux
 {{ end }}
 
 # Machine-local files that must NEVER be managed or committed by chezmoi.
