@@ -4,6 +4,9 @@
 [core]
 	editor = nvim -f
 	excludesfile = ~/.gitignore_global
+{{ if eq .chezmoi.os "windows" }}
+	filemode = false
+{{ end }}
 [color]
 	branch = auto
 	diff = auto
