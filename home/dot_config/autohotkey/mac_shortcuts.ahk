@@ -1,101 +1,77 @@
 ;-------------------------------------------------------------------------------
-; AutoHotKey config for my frequent Mac shortcuts on Windows
-;   -Use normal windows keyboard (Ctrl, Windows key, Alt)
-;   -To install on Windows from WSL2:
-;       ln -s ~/.dotfiles/winodws/mac_shortcuts.ahk
-;           /mnt/c/Users/<Your User>/AppData/Roaming/Microsoft/Windows/
-;           Start\ Menu/Programs/Startup/mac_shortcuts.ahk
+; AutoHotkey v2 config for my frequent Mac shortcuts on Windows
+;   - Use normal Windows keyboard (Ctrl, Windows key, Alt)
 ;-------------------------------------------------------------------------------
+
+#Requires AutoHotkey v2.0
 #SingleInstance Force
-#MenuMaskKey vkE8  ; Change the masking key to something unassigned such as vkE8.
-SendMode Input
-SetTitleMatchMode,2
 
-;#IfWinActive,VIM
-#IfWinActive
-    CAPSLOCK::ESC
-    ;ESC::CAPSLOCK
-return
+SendMode "Input"
+SetTitleMatchMode 2
 
-;New window
-!n::
-Send ^n
-return
+;-------------------------------------------------------------------------------
+; Caps Lock -> Escape
+;-------------------------------------------------------------------------------
 
-;New tab
-!t::
-Send ^t
-return
+CapsLock::Esc
 
-;Refresh
-!r::
-Send ^r
-return
+;-------------------------------------------------------------------------------
+; Mac-style shortcuts
+;-------------------------------------------------------------------------------
 
-;Close tab
-!w::
-Send ^w
-return
+; New window
+!n::Send "^n"
 
-;Copy
-!c::
-Send ^c
-return
+; New tab
+!t::Send "^t"
 
-;Cut
-!x::
-Send ^x
-return
+; Refresh
+!r::Send "^r"
 
-;Paste
-!v::
-Send ^v
-return
+; Close tab
+!w::Send "^w"
 
-;Undo
-!z::
-Send ^z
-return
+; Copy
+!c::Send "^c"
 
-;Find
-!f::
-Send ^f
-return
+; Cut
+!x::Send "^x"
 
-;Select all
-!a::
-Send ^a
-return
+; Paste
+!v::Send "^v"
 
-;Goto Address Bar
-#IfWinActive, ahk_exe chrome.exe
-{
-    !l::
-    Send ^l
-    return
-}
+; Undo
+!z::Send "^z"
 
-;Back
-;![::!Left
-![::
-Send {Browser_Back}
-return
+; Find
+!f::Send "^f"
 
-;Forward
-;!]::!Right
-!]::
-Send {Browser_Forward}
-return
+; Select all
+!a::Send "^a"
 
-;Previous Tab
-;!+[:: send, ^+{Tab down}{Tab up}
-!+[::
-Send ^+{Tab}
-return
+;-------------------------------------------------------------------------------
+; Chrome-specific shortcuts
+;-------------------------------------------------------------------------------
 
-;Next Tab
-;!+]:: send, ^{Tab down}{Tab up}
-!+]::
-Send ^{Tab}
-return
+#HotIf WinActive("ahk_exe chrome.exe")
 
+; Go to address bar
+!l::Send "^l"
+
+#HotIf
+
+;-------------------------------------------------------------------------------
+; Navigation
+;-------------------------------------------------------------------------------
+
+; Back
+![::Send "{Browser_Back}"
+
+; Forward
+!]::Send "{Browser_Forward}"
+
+; Previous tab
+!+[::Send "^+{Tab}"
+
+; Next tab
+!+]::Send "^{Tab}"
